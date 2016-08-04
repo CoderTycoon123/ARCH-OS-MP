@@ -65,8 +65,10 @@ public class Float2BinaryHexConverter
     {
         //############################################### INPUT ########################################################
         if (decimal < 0)
-                signBit = 1;
-
+        {
+            signBit = 1;
+            decimal*= -1;
+        }
         decimal = decimal * (Math.pow(10, exp));	// ex. 4.5 x 10 ^ 2 becomes 450.0
         String strDecimal = decimal + "";
 
