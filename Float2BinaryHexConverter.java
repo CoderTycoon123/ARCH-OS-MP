@@ -1,4 +1,4 @@
-package Downloads;
+package Whatever;
 
 import java.util.Scanner;
 
