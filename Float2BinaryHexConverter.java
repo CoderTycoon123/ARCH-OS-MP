@@ -1,6 +1,4 @@
-//package Downloads;
-
-//package cpl;
+package cpl;
 
 import java.util.Scanner;
 
@@ -68,11 +66,14 @@ public class Float2BinaryHexConverter {
 		//############################################### INPUT ########################################################
 		int signBit = 0;
 		if (decimal < 0)
+		{
 			signBit = 1;
+			decimal *= -1;
+		}
 		
 		decimal = decimal*(Math.pow(10, exp));	// ex. 4.5 x 10 ^ 2 becomes 450.0
 		String strDecimal = decimal + "";
-		
+		System.out.println("decimal: "+ decimal);
 		String strWhole = app.wholeToBinary(strDecimal);
 		
 		String strFraction= app.fractionToBinary(strDecimal.substring(strDecimal.indexOf('.'), strDecimal.length()));
@@ -104,8 +105,9 @@ public class Float2BinaryHexConverter {
 		System.out.println("E = "+E);
 		
 		strBinary = binary + "";
-		String strMantissa = strBinary.substring(strBinary.indexOf('.'));
-		double mantissa = Double.parseDouble(strMantissa);
+		String strMantissa = strBinary.substring(strBinary.indexOf('.')+1);
+		System.out.println("strMan "+strMantissa);
+		int mantissa = Integer.parseInt(strMantissa);
 		
 		System.out.println("mantissa: "+mantissa);
 		
@@ -115,17 +117,17 @@ public class Float2BinaryHexConverter {
 			System.out.println(binary);
 		else if (Eprime == 0 && mantissa !=0)
 			System.out.println("Denormalized");
-		else if (Eprime >= 255 && mantissa == 0)
+		else if (Eprime == 255 && mantissa == 0)
 			System.out.println("infinity and beyond!");
-		else if(Eprime >= 255 && mantissa != 0)
+		else if(Eprime == 255 && mantissa != 0)
 			System.out.println("Nan");
 		
 		else
 		{
-			strMantissa = mantissa + "";
-			int periodIndex = strMantissa.indexOf('.');
+			//strMantissa = mantissa + "";
+			//int periodIndex = strMantissa.indexOf('.');
 			
-			strMantissa = strMantissa.substring(periodIndex+1);
+			//strMantissa = strMantissa.substring(periodIndex+1);
 			//System.out.println("strMantissa: "+ strMantissa);
 			while (strMantissa.length() < 23)
 			{
